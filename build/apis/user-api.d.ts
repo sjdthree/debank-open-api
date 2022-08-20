@@ -39,7 +39,7 @@ export declare const UserApiAxiosParamCreator: (configuration?: Configuration) =
      * @param {boolean} isall boolean
      * @throws {RequiredError}
      */
-    getUserAllNftList: (id: string, is_all: boolean) => Promise<RequestArgs>;
+    getUserAllNftList: (id: string, isall: boolean) => Promise<RequestArgs>;
     /**
      * Get the user's portfolio in the protocol
      * @param {string} id User Address
@@ -131,6 +131,13 @@ export declare const UserApiFp: (configuration?: Configuration) => {
      */
     getUserNftList(id: string, chainId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
+     * Get all of the user nft list
+     * @param {string} id Address
+     * @param {boolean} isall boolean
+     * @throws {RequiredError}
+     */
+    getUserAllNftList(id: string, isall: boolean): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
      * Get the user's portfolio in the protocol
      * @param {string} id User Address
      * @param {string} protocolId protocol id
@@ -220,6 +227,13 @@ export declare const UserApiFactory: (configuration?: Configuration, basePath?: 
      * @throws {RequiredError}
      */
     getUserNftList(id: string, chainId: string, options?: any): AxiosPromise<void>;
+    /**
+     * Get all users nft list
+     * @param {string} id Address
+     * @param {boolean} isall boolean
+     * @throws {RequiredError}
+     */
+    getUserAllNftList(id: string, isall: boolean): AxiosPromise<void>;
     /**
      * Get the user's portfolio in the protocol
      * @param {string} id User Address
@@ -314,6 +328,14 @@ export declare class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     getUserNftList(id: string, chainId: string, options?: any): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * Get all users nft list
+     * @param {string} id Address
+     * @param {boolean} isall boolean
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    getUserAllNftList(id: string, isall: boolean): Promise<import("axios").AxiosResponse<void, any>>;
     /**
      * Get the user's portfolio in the protocol
      * @param {string} id User Address

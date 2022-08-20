@@ -132,10 +132,10 @@ const UserApiAxiosParamCreator = function (configuration) {
          * @param {boolean} isall boolean
          * @throws {RequiredError}
          */
-        getUserAllNftList: (id, is_all) => __awaiter(this, void 0, void 0, function* () {
+        getUserAllNftList: (id, isall) => __awaiter(this, void 0, void 0, function* () {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getUserNftList.');
+                throw new base_1.RequiredError('id', 'Required parameter id was null or undefined when calling getUserAllNftList.');
             }
             const localVarPath = `/v1/user/all_nft_list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -584,6 +584,21 @@ const UserApiFp = function (configuration) {
             });
         },
         /**
+         * Get all of the user nft list
+         * @param {string} id Address
+         * @param {boolean} isall boolean
+         * @throws {RequiredError}
+         */
+        getUserAllNftList(id, isall) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield (0, exports.UserApiAxiosParamCreator)(configuration).getUserAllNftList(id, isall);
+                return (axios = axios_1.default, basePath = base_1.BASE_PATH) => {
+                    const axiosRequestArgs = Object.assign(Object.assign({}, localVarAxiosArgs.options), { url: basePath + localVarAxiosArgs.url });
+                    return axios.request(axiosRequestArgs);
+                };
+            });
+        },
+        /**
          * Get the user's portfolio in the protocol
          * @param {string} id User Address
          * @param {string} protocolId protocol id
@@ -745,6 +760,15 @@ const UserApiFactory = function (configuration, basePath, axios) {
             return (0, exports.UserApiFp)(configuration).getUserNftList(id, chainId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Get all users nft list
+         * @param {string} id Address
+         * @param {boolean} isall boolean
+         * @throws {RequiredError}
+         */
+        getUserAllNftList(id, isall) {
+            return (0, exports.UserApiFp)(configuration).getUserAllNftList(id, isall).then((request) => request(axios, basePath));
+        },
+        /**
          * Get the user's portfolio in the protocol
          * @param {string} id User Address
          * @param {string} protocolId protocol id
@@ -859,6 +883,16 @@ class UserApi extends base_1.BaseAPI {
      */
     getUserNftList(id, chainId, options) {
         return (0, exports.UserApiFp)(this.configuration).getUserNftList(id, chainId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Get all users nft list
+     * @param {string} id Address
+     * @param {boolean} isall boolean
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    getUserAllNftList(id, isall) {
+        return (0, exports.UserApiFp)(this.configuration).getUserAllNftList(id, isall).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get the user's portfolio in the protocol
